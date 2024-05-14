@@ -9,7 +9,7 @@ export default function Day({ day, rowIdx }) {
 			: "";
 	}
 	return (
-		<div className="border border-gray-200 flex flex-col">
+		<div className="border border-black-200  flex flex-col shadow-md hover:shadow-2xl">
 			<header className="flex flex-col items-center">
 				{rowIdx === 0 && (
 					<p className="text-sm mt-1">{day.format("ddd").toUpperCase()}</p>
