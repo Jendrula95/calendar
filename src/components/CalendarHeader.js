@@ -19,7 +19,10 @@ export default function CalendarHeader() {
 	}
 
 	return (
-		<header className="px-4 py-2 flex items-center shadow-md ">
+		<header
+			className="px-4 py-2 flex items-center shadow-md "
+			style={{ backgroundColor: "#F8F6E3" }}
+		>
 			<h2
 				className="ml-2  text-xl text-gray-500 font-bold"
 				style={{ color: "#FF6F00" }}

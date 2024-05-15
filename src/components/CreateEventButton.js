@@ -7,9 +7,10 @@ export default function CreateEventButton() {
 		<button
 			onClick={() => setShowEventModal(true)}
 			className="border p-2 rounded-full flex items-center shadow-md hover:shadow-2xl "
+			style={{ backgroundColor: "#97E7E1" }}
 		>
 			<img src={plusImg} alt="add" className="w-7 h-7"></img>
-			<span className="pl-3 pr-7" style={{ color: "green" }}>
+			<span className="pl-3 pr-7" style={{ color: "orange" }}>
 				Create
 			</span>
 		</button>

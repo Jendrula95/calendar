@@ -1,17 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ContextWraper from "./context/ContextWraper";
 
-ReactDOM.render(
+createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<ContextWraper>
 			<App />
 		</ContextWraper>
-	</React.StrictMode>,
-
-	document.getElementById("root")
+	</React.StrictMode>
 );
 reportWebVitals();
