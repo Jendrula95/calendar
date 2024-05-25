@@ -1,35 +1,42 @@
-import dayjs from "dayjs";
 import React, { useContext, useEffect, useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
+import GlobalContext, { GlobalContextProps } from "../context/GlobalContext";
 import { getMonth } from "../util";
 
-import GlobalContext from "../context/GlobalContext";
-
 export default function SmallCalendar() {
-	const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month());
-	const [currentMonth, setCurrentMonth] = useState(getMonth());
+	const [currentMonthIdx, setCurrentMonthIdx] = useState<number>(
+		dayjs().month()
+	);
+	const [currentMonth, setCurrentMonth] = useState<Dayjs[][]>(
+		getMonth(currentMonthIdx)
+	);
+
 	useEffect(() => {
 		setCurrentMonth(getMonth(currentMonthIdx));
 	}, [currentMonthIdx]);
+
 	const { monthIndex, setSmallCalendarMonth, setDaySelected, daySelected } =
-		useContext(GlobalContext);
+		useContext<GlobalContextProps>(GlobalContext);
+
 	useEffect(() => {
 		setCurrentMonthIdx(monthIndex);
 	}, [monthIndex]);
+
 	function handlePrevMonth() {
 		setCurrentMonthIdx(currentMonthIdx - 1);
 	}
 	function handleNextMonth() {
 		setCurrentMonthIdx(currentMonthIdx + 1);
 	}
-	function getDayClass(day) {
+	function getDayClass(day: Dayjs) {
 		const format = "DD-MM-YY";
 		const nowDay = dayjs().format(format);
 		const currDay = day.format(format);
-		const selectedDay = daySelected && daySelected.format(format);
+		const slcDay = daySelected && daySelected.format(format);
 		if (nowDay === currDay) {
 			return "bg-blue-500 rounded-full text-white";
-		} else if (currDay === selectedDay) {
-			return "bg-blue-100 rounded-full text-red-600 font-bold";
+		} else if (currDay === slcDay) {
+			return "bg-blue-100 rounded-full text-blue-600 font-bold";
 		} else {
 			return "";
 		}
@@ -37,19 +44,16 @@ export default function SmallCalendar() {
 	return (
 		<div className="mt-9">
 			<header className="flex justify-between">
-				<p
-					className="text-gray-500 fond-bold ml-2"
-					style={{ color: "#1B5E20" }}
-				>
-					{dayjs(new Date(dayjs().year(), currentMonthIdx)).format("MMMM")}
+				<p className="text-gray-500 font-bold">
+					{dayjs(new Date(dayjs().year(), currentMonthIdx)).format("MMMM YYYY")}
 				</p>
 				<div>
-					<button onClick={handleNextMonth}>
+					<button onClick={handlePrevMonth}>
 						<span className="material-icons-outlined cursor-pointer text-gray-600 mx-2">
 							chevron_left
 						</span>
 					</button>
-					<button onClick={handlePrevMonth}>
+					<button onClick={handleNextMonth}>
 						<span className="material-icons-outlined cursor-pointer text-gray-600 mx-2">
 							chevron_right
 						</span>
@@ -58,11 +62,7 @@ export default function SmallCalendar() {
 			</header>
 			<div className="grid grid-cols-7 grid-rows-6">
 				{currentMonth[0].map((day, i) => (
-					<span
-						key={i}
-						className="text-sm py-1 text-center"
-						style={{ color: "red" }}
-					>
+					<span key={i} className="text-sm py-1 text-center">
 						{day.format("dd").charAt(0)}
 					</span>
 				))}

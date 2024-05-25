@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
-import plusImg from "../assets/plus.png";
 import GlobalContext from "../context/GlobalContext";
+
 export default function CreateEventButton() {
 	const { setShowEventModal } = useContext(GlobalContext);
 	return (
 		<button
 			onClick={() => setShowEventModal(true)}
 			className="border p-2 rounded-full flex items-center shadow-md hover:shadow-2xl "
-			style={{ backgroundColor: "#97E7E1" }}
+			style={{ backgroundColor: "white", borderColor: "orange" }}
 		>
-			<img src={plusImg} alt="add" className="w-7 h-7"></img>
-			<span className="pl-3 pr-7" style={{ color: "orange" }}>
+			<span className="material-icons-outlined">add</span>
+			<span className=" pl-3 pr-7" style={{ color: "black" }}>
 				Create
 			</span>
 		</button>

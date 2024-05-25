@@ -32,6 +32,7 @@ export default function CalendarHeader() {
 			<button
 				onClick={handleReset}
 				className="border rounded py-2 px-4 ml-5 mr-5 shadow-md hover:shadow-2xl"
+				style={{ borderColor: "orange" }}
 			>
 				Today
 			</button>
